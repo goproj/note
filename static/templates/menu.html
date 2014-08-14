@@ -1,0 +1,48 @@
+<ion-side-menus>
+
+    <ion-pane ion-side-menu-content drag-content="false">
+        <ion-nav-bar class="bar-calm nav-title-slide-ios7">
+            <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> 返回</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+    </ion-pane>
+
+    <ion-side-menu side="left">
+        <header class="bar bar-header bar-calm">
+            <h1 class="title">日程表</h1>
+        </header>
+        <ion-content class="has-header">
+            <ion-list>
+                <ion-item nav-clear menu-close ng-click="openAddNoteModal()">
+                    <a class="button icon-left ion-plus-round button-clear button-dark">添加</a>
+                </ion-item>
+                <ion-item nav-clear menu-close>
+                    <a class="button icon-left ion-star button-clear button-dark" href="#/app/note/all">全部</a>
+                </ion-item>
+                <ion-item nav-clear menu-close>
+                    <a class="button icon-left ion-checkmark button-clear button-dark" href="#/app/note/finished">已完成</a>
+                </ion-item>
+                <ion-item nav-clear menu-close>
+                    <a class="button icon-left ion-document-text button-clear button-dark" href="#/app/note/unfinished">待完成</a>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>
+
+<script type="text/ng-template" id="modal/add-note.html">
+    <div class="modal">
+        <ion-header-bar class="bar-calm">
+            <h1 class="title">添加任务</h1>
+            <div class="buttons">
+                <button class="button button-clear" ng-click="closeAddNoteModal()">关闭</button>
+            </div>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <textarea class="topcoat-textarea" ng-model="note.content">
+            </textarea>
+            <button class="button button-block button-positive" ng-click="addNote()">添加</button>
+
+        </ion-content>
+    </div>
+</script>

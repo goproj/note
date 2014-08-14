@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-
 <html>
-  	<head>
-    	<title>Note</title>
-    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    	<link rel="stylesheet" type="text/css" href="{[.Static]}/css/g.css">
-	</head>
 
-  	<body>
-  		Contact me: {[.Email]}
-	</body>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+      <title></title>
+
+      <link href="/static/lib/ionic/css/ionic.css" rel="stylesheet">
+      <link href="/static/css/style.css" rel="stylesheet">
+
+      <script src="/static/lib/ionic/js/ionic.bundle.js"></script>
+      <script src="/static/lib/localforage.min.js"></script>
+      <script src="/static/lib/angular-localForage.min.js"></script>
+      <script src="/static/lib/lodash.min.js"></script>
+
+      <script src="/static/js/app.js"></script>
+      <script src="/static/js/controllers.js"></script>
+      <script src="/static/js/services.js"></script>
+
+      <script src="/static/js/controllers/menu.js"></script>
+      <script src="/static/js/controllers/note.js"></script>
+
+      <script src="/static/js/services/note.js"></script>
+      <script src="/static/js/services/util.js"></script>
+  </head>
+
+  <body ng-app="starter">
+      <ion-nav-view></ion-nav-view>
+  </body>
+
 </html>
