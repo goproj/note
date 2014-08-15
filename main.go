@@ -8,6 +8,7 @@ import (
 
 func main() {
 	g.ReadConfig()
+	g.InitDB()
 	beego.TemplateLeft = "{["
 	beego.TemplateRight = "]}"
 	beego.Run()
