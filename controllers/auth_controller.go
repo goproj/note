@@ -4,11 +4,7 @@ type AuthController struct {
 	BaseController
 }
 
-func (this *AuthController) LoginGet() {
-	this.Ctx.WriteString("login get")
-}
-
-func (this *AuthController) LoginPost() {
+func (this *AuthController) Login() {
 	this.Ctx.WriteString("login post")
 }
 
@@ -16,10 +12,6 @@ func (this *AuthController) Logout() {
 	this.Ctx.WriteString("logout")
 }
 
-func (this *AuthController) RegisterGet() {
-	this.Ctx.WriteString("register get")
-}
-
-func (this *AuthController) RegisterPost() {
+func (this *AuthController) Register() {
 	this.Ctx.WriteString("register post")
 }
