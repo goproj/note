@@ -30,3 +30,7 @@ go build
 - 注册 /register 参数：name email password，email是必填的，如果name留空，就把email设置为name
 - 登陆 /login 参数：email password
 - 退出 /logout
+
+## 备忘
+
+- prepare方法中不能每次都读DB，需要加cache，先跑通基本流程，之后统一加cache
