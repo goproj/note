@@ -40,6 +40,10 @@ func (this *MainController) RetrieveUserFromCookie() bool {
 		return false
 	}
 
+	if u.Blocked == 1 {
+		return false
+	}
+
 	return true
 }
 

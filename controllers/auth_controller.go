@@ -78,6 +78,11 @@ func (this *AuthController) Login() {
 		return
 	}
 
+	if u.Blocked == 1 {
+		this.ServeErrMsg("u'r blocked")
+		return
+	}
+
 	// write cookie: max-age, path, domain, secure, httponly
 	this.Ctx.SetSecureCookie(g.SecretKey, g.CookieName, fmt.Sprintf("%d", u.Id), 2592000, "/", "", false, true)
 	if u.Portrait == "" {
