@@ -10,6 +10,10 @@ type AuthController struct {
 	BaseController
 }
 
+func (this *AuthController) Index() {
+	this.TplNames = "index.html"
+}
+
 func (this *AuthController) Register() {
 	email := this.GetString("email")
 	name := this.GetString("name")

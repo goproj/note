@@ -47,12 +47,6 @@ func (this *MainController) RetrieveUserFromCookie() bool {
 	return true
 }
 
-func (this *MainController) Get() {
-	this.Data["Website"] = "beego.me"
-	this.Data["Email"] = "ulric.qin@gmail.com"
-	this.TplNames = "index.html"
-}
-
 func (this *MainController) Me() {
 	// just a test
 	this.ServeDataJson(this.CurrentUser)
