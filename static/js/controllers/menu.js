@@ -1,6 +1,6 @@
 angular.module('starter.controllers.Menu', [])
 
-.controller('MenuCtrl', function($rootScope, $scope, $ionicModal, Note, Util) {
+.controller('MenuCtrl', function($rootScope, $scope, $ionicModal, Note, Util, Auth,$state) {
 
 	$scope.note = {};
 
@@ -8,6 +8,12 @@ angular.module('starter.controllers.Menu', [])
 		scope: $scope
 	}).then(function(modal) {
 		$scope.modal = modal;
+	});
+
+	$ionicModal.fromTemplateUrl('modal/add-note.html', {
+		scope: $scope
+	}).then(function(modal) {
+		$scope.loginModel = modal;
 	});
 
 	$scope.closeAddNoteModal = function() {
@@ -23,7 +29,7 @@ angular.module('starter.controllers.Menu', [])
 		$scope.note.id = $scope.note.createdAt;
 		$scope.note.done = false;
 
-		if (!$scope.note.content||$scope.note.content.trim() === '') {
+		if (!$scope.note.content || $scope.note.content.trim() === '') {
 			Util.toast('请输入内容');
 		} else {
 			Note.addNote($scope.note).then(function() {
@@ -32,6 +38,16 @@ angular.module('starter.controllers.Menu', [])
 				$scope.note = {};
 			});
 		}
+	};
 
+	$scope.logout = function() {
+		Auth.logout().then(function(result) {
+			if (result.err !== 0) {
+				Util.toast(result.msg);
+			} else {
+				Auth.setUnauth();
+				$state.go('login');
+			}
+		});
 	}
 });

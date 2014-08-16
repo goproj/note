@@ -1,0 +1,29 @@
+<ion-view title="{{'登录'}}" hide-back-button="true">
+
+    <ion-content class="has-header login-content" padding="true" scroll="false">
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">邮箱</span>
+                <input type="text" ng-model="loginForm.email" placeholder="请输入邮箱">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">密码</span>
+                <input type="password" ng-model="loginForm.password" placeholder="请输入密码">
+            </label>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button ng-click="login()" class="button button-block button-positive">
+                    登录
+                </button>
+            </div>
+            <div class="col">
+                <a ui-sref="register" class="button button-block button-balanced">
+                    注册
+                </a>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
