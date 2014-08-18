@@ -1,4 +1,4 @@
-use note;
+use todo_note;
 
 set names utf8;
 
