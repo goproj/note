@@ -12,10 +12,13 @@ angular.module('starter.services.Auth', [])
 			$window.localStorage.setItem('auth','false');
 		},
 		register:function(username,email,password){
-			var registerForm={};
+			var registerForm={
+				username:username,
+				password:CryptoJS.MD5(password).toString(),
+				
+			};
 			registerForm.username=username;
-			//registerForm.password=CryptoJS.MD5(password);
-			registerForm.password=password;
+			registerForm.password=CryptoJS.MD5(password).toString();
 			registerForm.email=email;
 
 			return $http.get('/register',{
@@ -27,7 +30,7 @@ angular.module('starter.services.Auth', [])
 		login:function(email,password){
 			var loginForm={
 				email:email,
-				password:password
+				password:CryptoJS.MD5(password).toString()
 			};
 			return $http.get('/login',{
 				params:loginForm
