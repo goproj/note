@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/goproj/note/g"
 	"github.com/goproj/note/models"
@@ -15,9 +16,21 @@ func (this *AuthController) Index() {
 }
 
 func (this *AuthController) Register() {
-	email := this.GetString("email")
-	name := this.GetString("name")
-	password := this.GetString("password")
+	type JsonInfo struct {
+		Email    string `json:"email"`
+		Name     string `json:"name"`
+		Password string `json:"password"`
+	}
+
+	var jsonInfo JsonInfo
+	if json.Unmarshal(this.Ctx.Input.RequestBody, &jsonInfo) != nil {
+		this.ServeErrMsg("input format error")
+		return
+	}
+
+	email := jsonInfo.Email
+	name := jsonInfo.Name
+	password := jsonInfo.Password
 
 	if email == "" {
 		this.ServeErrMsg("邮箱必须填写")
