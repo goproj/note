@@ -18,7 +18,7 @@ func (this *AuthController) Index() {
 func (this *AuthController) Register() {
 	type JsonInfo struct {
 		Email    string `json:"email"`
-		Name     string `json:"name"`
+		Username string `json:"username"`
 		Password string `json:"password"`
 	}
 
@@ -29,7 +29,7 @@ func (this *AuthController) Register() {
 	}
 
 	email := jsonInfo.Email
-	name := jsonInfo.Name
+	name := jsonInfo.Username
 	password := jsonInfo.Password
 
 	if email == "" {
@@ -78,8 +78,20 @@ func (this *AuthController) Logout() {
 }
 
 func (this *AuthController) Login() {
-	email := this.GetString("email")
-	password := this.GetString("password")
+
+	type JsonInfo struct {
+		Email    string `json:"email"`
+		Password string `json:"password"`
+	}
+
+	var jsonInfo JsonInfo
+	if json.Unmarshal(this.Ctx.Input.RequestBody, &jsonInfo) != nil {
+		this.ServeErrMsg("input format error")
+		return
+	}
+
+	email := jsonInfo.Email
+	password := jsonInfo.Password
 	if email == "" {
 		this.ServeErrMsg("邮箱必须填写")
 		return
