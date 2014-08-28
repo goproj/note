@@ -8,6 +8,7 @@
 
     <link href="/static/lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/device-mockups.css" rel="stylesheet">
 
     <script src="/static/lib/ionic/js/ionic.bundle.js"></script>
     <script src="/static/lib/localforage.min.js"></script>
@@ -29,11 +30,20 @@
     <script src="/static/js/services/auth.js"></script>
 </head>
 
-<body ng-app="starter">
-    <ion-nav-bar class="bar-calm nav-title-slide-ios7" delegate-handle="mainNav">
-        <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> 返回</ion-nav-back-button>
-    </ion-nav-bar>
-    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+<body>
+        <div ng-app="starter" class="device-mockup iphone5">
+            <div class="device">
+                <div class="screen">
+                    <ion-nav-bar class="bar-calm nav-title-slide-ios7" delegate-handle="mainNav">
+                        <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> 返回</ion-nav-back-button>
+                    </ion-nav-bar>
+                    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+                </div>
+                <div class="button">
+
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>

@@ -1,53 +1,66 @@
 body {
-  font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans","wenquanyi micro hei","Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
+    font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", Arial, sans-serif;
 }
-
-
-.padding{
-	padding:0.5em;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
-
+html, body {
+    width: 100%;
+    width: 100%;
+    position: relative;
+}
+html {
+    background-image: -webkit-radial-gradient(center center, circle cover, #ffffff, #cfcfcf 100%);
+    background-image: -moz-radial-gradient(center center, circle cover, #ffffff, #cfcfcf 100%);
+    background-image: -ms-radial-gradient(center center, circle cover, #ffffff, #cfcfcf 100%);
+    background-image: -o-radial-gradient(center center, circle cover, #ffffff, #cfcfcf 100%);
+    background-image: radial-gradient(center center, circle cover, #ffffff, #cfcfcf 100%);
+}
+body {
+    margin: 0 auto;
+    max-width: 380px;
+}
+.padding {
+    padding: 0.5em;
+}
 .topcoat-textarea {
-  padding: 2rem;
-  font-size: 2.5rem;
-  font-weight: 400;
-  border-radius: 6px;
-  line-height: 3rem;
-  border: 1px solid #9daca9;
-  background-color: #fff;
-  box-shadow: inset 0 1px rgba(0,0,0,0.1);
-  color: #454545;
-  letter-spacing: 1px;
+    padding: 2rem;
+    font-size: 2.5rem;
+    font-weight: 400;
+    border-radius: 6px;
+    line-height: 3rem;
+    border: 1px solid #9daca9;
+    background-color: #fff;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.1);
+    color: #454545;
+    letter-spacing: 1px;
 }
-
 .topcoat-textarea:focus {
-  background-color: #fff;
-  color: #454545;
-  border: 1px solid #0036ff;
-  box-shadow: 0 0 0 2px #6fb5f1;
+    background-color: #fff;
+    color: #454545;
+    border: 1px solid #0036ff;
+    box-shadow: 0 0 0 2px #6fb5f1;
 }
-
-.completed{
-  color: #a9a9a9;
-  text-decoration: line-through;
+.completed {
+    color: #a9a9a9;
+    text-decoration: line-through;
 }
-
-.item{
-  cursor:pointer;
+.item {
+    cursor: pointer;
 }
-
-.register-content .item,.login-content .item{
-  border-left: none;
-  border-right: none;
+.register-content .item, .login-content .item {
+    border-left: none;
+    border-right: none;
 }
-
-
-.register-content .item:first-child,.login-content .item:first-child{
-  border-top: none;
+.register-content .item:first-child, .login-content .item:first-child {
+    border-top: none;
 }
-
-.padding-horizontal{
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+.padding-horizontal {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
-

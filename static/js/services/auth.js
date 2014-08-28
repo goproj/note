@@ -15,11 +15,9 @@ angular.module('starter.services.Auth', [])
 			var registerForm={
 				username:username,
 				password:CryptoJS.MD5(password).toString(),
+				email:email
 				
 			};
-			registerForm.username=username;
-			registerForm.password=CryptoJS.MD5(password).toString();
-			registerForm.email=email;
 
 			return $http.post('/register',registerForm).then(function(result){
 				return result.data;
@@ -30,7 +28,7 @@ angular.module('starter.services.Auth', [])
 				email:email,
 				password:CryptoJS.MD5(password).toString()
 			};
-			return $http.get('/login',loginForm).then(function(result){
+			return $http.post('/login',loginForm).then(function(result){
 				return result.data;
 			});
 		},
