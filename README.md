@@ -15,7 +15,7 @@ go build
 ./note
 ```
 
-## list
+## 开发约定
 
 后端接口通常都是返回一个json字符串，有三个字段：
 
@@ -24,12 +24,6 @@ go build
 - data 具体要返回的核心内容，如果err>0，就不会有data字段
 
 所以前端可能要先判断err字段，再做具体处理
-
-注册、登陆、退出搞定了
-
-- 注册 /register 参数：name email password，email是必填的，如果name留空，就把email设置为name
-- 登陆 /login 参数：email password
-- 退出 /logout
 
 ## 备忘
 

@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-func (this *User) FillUserAttrs() bool {
+func (this *User) FillAttrs() bool {
 	o := orm.NewOrm()
 	err := o.Read(this)
 	if err == orm.ErrNoRows {
@@ -16,13 +16,20 @@ func (this *User) FillUserAttrs() bool {
 	}
 }
 
-func (this *User) SaveUser() error {
+func (this *User) Insert() error {
 	o := orm.NewOrm()
 	id, err := o.Insert(this)
 	if err != nil {
 		return err
 	}
 	this.Id = int(id)
+	return nil
+}
+
+func (this *User) Delete() error {
+	if _, err := orm.NewOrm().Delete(this); err != nil {
+		return err
+	}
 	return nil
 }
 

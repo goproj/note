@@ -54,7 +54,7 @@ func (this *AuthController) Register() {
 	}
 
 	u := &models.User{Name: name, Email: email, Password: password}
-	err := u.SaveUser()
+	err := u.Insert()
 	if err != nil {
 		this.ServeErrMsg(err.Error())
 		return

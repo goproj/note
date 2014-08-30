@@ -17,12 +17,12 @@ type User struct {
 }
 
 type Note struct {
-	Id       int       `orm:"auto;pk"`
-	UserId   int       `orm:"column(user_id);index"`
-	Content  string    `orm:"size(1024)"`
-	Done     int8      `orm:"type(tinyint)"`
-	DoneAt   time.Time `orm:"null;type(datetime);column(done_at)"`
-	CreateAt time.Time `orm:"auto_now_add;type(datetime);column(create_at)"`
+	Id       int       `orm:"auto;pk" json:"id"`
+	UserId   int       `orm:"column(user_id);index" json:"user_id"`
+	Content  string    `orm:"size(1024)" json:"content"`
+	Done     int8      `orm:"type(tinyint)" json:"done"`
+	DoneAt   time.Time `orm:"null;type(datetime);column(done_at)" json:"done_at"`
+	CreateAt time.Time `orm:"auto_now_add;type(datetime);column(create_at)" json:"create_at"`
 }
 
 func (u *User) TableName() string {

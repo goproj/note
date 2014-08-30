@@ -34,7 +34,7 @@ func (this *MainController) RetrieveUserFromCookie() bool {
 	}
 
 	u := &models.User{Id: int(id)}
-	if u.FillUserAttrs() {
+	if u.FillAttrs() {
 		this.CurrentUser = u
 	} else {
 		return false
