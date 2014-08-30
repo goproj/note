@@ -162,6 +162,6 @@ func (this *NoteController) Todo() {
 	this.ServeDataJson(models.TodoNotes(this.CurrentUser.Id))
 }
 
-func (this *NoteController) History() {
+func (this *NoteController) Done() {
 	this.ServeDataJson(models.DoneNotes(this.CurrentUser.Id))
 }

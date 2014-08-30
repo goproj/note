@@ -14,7 +14,7 @@ func init() {
 	beego.Router("/me", &controllers.MainController{}, "get:Me")
 
 	beego.Router("/note/todo", &controllers.NoteController{}, "get:Todo")
-	beego.Router("/note/history", &controllers.NoteController{}, "get:History")
+	beego.Router("/note/done", &controllers.NoteController{}, "get:Done")
 	beego.Router("/note", &controllers.NoteController{}, "post:Add")
 	beego.Router("/note/:id/mark/:done", &controllers.NoteController{}, "get:Mark")
 	beego.Router("/note/:id", &controllers.NoteController{}, "get:Read")
