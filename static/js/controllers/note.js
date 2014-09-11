@@ -8,29 +8,27 @@ angular.module('starter.controllers.Note', [])
 		unfinished: '待完成'
 	};
 
+		
+
 	var state = $state.params.state;
-	var notes=[];
-	var filter=function(notes){
+	var filter = function() {
 		if (state === 'finished') {
-			notes = _.filter(notes, function(note) {
-				return note.done === true;
+			Note.getNotes(true).then(function(notes){
+				$scope.notes = notes;
 			});
 		} else if (state === 'unfinished') {
-			notes = _.filter(notes, function(note) {
-				return note.done === false;
+			Note.getNotes(false).then(function(notes){
+				$scope.notes = notes;
 			});
 		}
+	};
 
-		$scope.notes = notes;
-	}
+	
 
 	$scope.title = titles[state];
 	$scope.notes = [];
 
-	Note.getNotes().then(function(items) {
-		notes=items;
-		filter(notes);
-	});
+	filter();
 
 	$ionicModal.fromTemplateUrl('modal/edit-note.html', {
 		scope: $scope
@@ -43,34 +41,35 @@ angular.module('starter.controllers.Note', [])
 	};
 
 	$scope.delete = function(note) {
-		_.remove($scope.notes, function(item) {
-			return note.id===item.id;
+		Note.deleteNote(note.id).then(function(){
+			filter();
 		});
-		Note.deleteNote(note.id);
 	};
 
 	$scope.openEditNoteModal = function(note) {
-		$scope.currentNote = note;
+		$scope.currentNote = angular.copy(note);
 		$scope.modal.show();
 	};
 
-	$scope.edit=function(note){
-		Note.editNote(note).then(function(){
+	$scope.edit = function(id,content) {
+		Note.editNote(id,note).then(function() {
 			$scope.modal.hide();
 		});
 	};
 
 	$scope.toggleDone = function(note) {
-		note.done=!note.done;
-		Note.editNote(note).then(function(){
-			filter(notes);
+		var done=note.done?0:1;
+		var id=note.id;
+
+		Note.mark(id,done).then(function() {
+			filter();
 		});
 	};
 
 	$scope.$on('note:add', function(e, note) {
-		$scope.notes.unshift(note);
+		if (state!=='finished'){
+			$scope.notes.unshift(note);
+		}
 	});
-
-
 
 });

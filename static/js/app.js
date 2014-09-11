@@ -12,10 +12,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 	$rootScope.$on('$stateChangeStart',
 		function(event, toState, toParams, fromState, fromParams) {
-			if (toState.name.startsWith('app') && !Auth.isAuth()) {
+			if (toState.name.substring(0,3)==='app' && !Auth.isAuth()) {
 				$location.path('/login')
 			}
-		})
+		});
 
 
 })

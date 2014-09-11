@@ -1,42 +1,36 @@
 angular.module('starter.services.Note', [])
 
-.factory('Note', function($localForage, Util) {
+.factory('Note', function($localForage, $http, Util) {
 	var Note = {
 		addNote: function(note) {
-			return $localForage.getItem('notes').then(function(notes) {
-				return notes ? notes : [];
-			}).then(function(notes) {
-				notes.unshift(note);
-				return $localForage.setItem('notes', notes);
-			}).then(function() {
-				Util.toast('添加任务成功');
+			return $http.post('/note', note).then(function(result) {
+				return result.data.data;
 			});
 		},
-		getNotes: function() {
-			return $localForage.getItem('notes').then(function(notes) {
-				return notes ? notes : [];
-			});
+		getNotes: function(done) {
+
+			if (done) {
+				return $http.get('/note/done').then(function(result) {
+					return result.data.data;
+				});
+			} else {
+				return $http.get('/note/todo').then(function(result) {
+					return result.data.data;
+				});
+			}
 		},
 		deleteNote: function(id) {
-			return Note.getNotes().then(function(notes) {
-				_.remove(notes, function(item) {
-					return id === item.id;
-				});
-				return notes;
-			}).then(function(notes) {
-				return $localForage.setItem('notes', notes);
-			});
+			return $http.delete('/note/'+id);
 		},
 		editNote: function(note) {
-			return Note.getNotes().then(function(notes) {
-				var index=_.findIndex(notes, function(item) {
-					return note.id === item.id;
-				});
-				notes[index]=note;
-				return notes;
-			}).then(function(notes) {
-				return $localForage.setItem('notes', notes);
+			return $http.put('/note/'+id,{
+				content:content
+			}).then(function(result){
+				alert(JSON.stringify(result));
 			});
+		},
+		mark:function(id,done){
+			return $http.get('/note/'+id+'/mark/'+done);
 		}
 
 	}

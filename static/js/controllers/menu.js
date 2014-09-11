@@ -10,12 +10,6 @@ angular.module('starter.controllers.Menu', [])
 		$scope.modal = modal;
 	});
 
-	$ionicModal.fromTemplateUrl('modal/add-note.html', {
-		scope: $scope
-	}).then(function(modal) {
-		$scope.loginModel = modal;
-	});
-
 	$scope.closeAddNoteModal = function() {
 		$scope.modal.hide();
 	},
@@ -25,9 +19,6 @@ angular.module('starter.controllers.Menu', [])
 	};
 
 	$scope.addNote = function() {
-		$scope.note.createdAt = Date.now();
-		$scope.note.id = $scope.note.createdAt;
-		$scope.note.done = false;
 
 		if (!$scope.note.content || $scope.note.content.trim() === '') {
 			Util.toast('请输入内容');
