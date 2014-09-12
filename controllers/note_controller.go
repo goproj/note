@@ -2,52 +2,12 @@ package controllers
 
 import (
 	"encoding/json"
-	"github.com/goproj/note/g"
 	"github.com/goproj/note/models"
 	"strconv"
-	"fmt"
 )
 
 type NoteController struct {
-	BaseController
-}
-
-func (this *NoteController) CheckLogin() {
-	if this.RetrieveUserFromCookie() {
-		return
-	}
-
-	this.Abort("401")
-}
-
-
-func (this *NoteController) RetrieveUserFromCookie() bool {
-	uid, succ := this.Ctx.GetSecureCookie(g.SecretKey, g.CookieName)
-	if !succ {
-		return false
-	}
-
-	id, err := strconv.ParseInt(uid, 10, 64)
-	if err != nil {
-		return false
-	}
-
-	if id <= 0 {
-		return false
-	}
-
-	u := &models.User{Id: int(id)}
-	if u.FillAttrs() {
-		this.CurrentUser = u
-	} else {
-		return false
-	}
-
-	if u.Blocked == 1 {
-		return false
-	}
-
-	return true
+	MainController
 }
 
 func (this *NoteController) Read() {
@@ -153,8 +113,6 @@ func (this *NoteController) Add() {
 		this.ServeErrMsg("content is blank")
 		return
 	}
-
-	fmt.Println(this.CurrentUser)
 
 	n := models.Note{Content: jsonInfo.Content, UserId: this.CurrentUser.Id}
 	if e := n.Insert(); e != nil {
