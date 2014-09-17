@@ -3,21 +3,20 @@ angular.module('starter.controllers.Note', [])
 .controller('NoteCtrl', function($scope, $state, $ionicModal, Note) {
 
 	var titles = {
-		all: '全部',
-		finished: '已完成',
-		unfinished: '待完成'
+		finished: '历史',
+		unfinished: '待办'
 	};
 
 		
 
 	var state = $state.params.state;
-	var filter = function() {
+	var loadNotes = function() {
 		if (state === 'finished') {
-			Note.getNotes(true).then(function(notes){
+			return Note.getNotes(true).then(function(notes){
 				$scope.notes = notes;
 			});
 		} else if (state === 'unfinished') {
-			Note.getNotes(false).then(function(notes){
+			return Note.getNotes(false).then(function(notes){
 				$scope.notes = notes;
 			});
 		}
@@ -27,23 +26,26 @@ angular.module('starter.controllers.Note', [])
 
 	$scope.title = titles[state];
 	$scope.notes = [];
+	$scope.shouldShowDelete=false;
 
-	filter();
+	loadNotes();
 
-	$ionicModal.fromTemplateUrl('modal/edit-note.html', {
-		scope: $scope
-	}).then(function(modal) {
-		$scope.modal = modal;
-	});
+	
 
 	$scope.closeEditNoteModal = function() {
 		$scope.modal.hide();
 	};
 
-	$scope.delete = function(note) {
-		Note.deleteNote(note.id).then(function(){
-			filter();
-		});
+	$scope.toggleShowDelete=function(){
+		$scope.shouldShowDelete=!$scope.shouldShowDelete;
+	};
+
+
+	$scope.delete=function($event,id){
+		$event.stopPropagation();
+		Note.deleteNote(id).then(function(){
+	 		loadNotes();
+	 	});
 	};
 
 	$scope.openEditNoteModal = function(note) {
@@ -52,7 +54,8 @@ angular.module('starter.controllers.Note', [])
 	};
 
 	$scope.edit = function(id,content) {
-		Note.editNote(id,note).then(function() {
+		Note.editNote(id,content).then(function(data) {
+			loadNotes();
 			$scope.modal.hide();
 		});
 	};
@@ -62,8 +65,13 @@ angular.module('starter.controllers.Note', [])
 		var id=note.id;
 
 		Note.mark(id,done).then(function() {
-			filter();
+			loadNotes();
 		});
+	};
+
+	$scope.noteDetail=function(note){
+		Note.currentNote=note;
+		$state.go('app.noteDetail',{id:note.id});
 	};
 
 	$scope.$on('note:add', function(e, note) {

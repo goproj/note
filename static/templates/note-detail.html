@@ -1,0 +1,28 @@
+<ion-view title="详情">
+<ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="openEditNoteModal()">
+            编辑
+        </button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+        {{note.content}}
+    </ion-content>
+</ion-view>
+
+<script type="text/ng-template" id="modal/edit-note.html">
+    <div class="modal">
+        <ion-header-bar class="bar-calm">
+            <h1 class="title">编辑任务</h1>
+            <div class="buttons">
+                <button class="button button-clear" ng-click="closeEditNoteModal()">关闭</button>
+            </div>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <textarea class="topcoat-textarea" ng-model="editNote.content">
+            </textarea>
+            <button class="button button-block button-positive" ng-click="edit(editNote.id,editNote.content)">保存</button>
+
+        </ion-content>
+    </div>
+</script>
+

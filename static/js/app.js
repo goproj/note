@@ -43,16 +43,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 	})
 
 	.state('app.note', {
-		url: "/note/:state",
+		url: '/note/:state',
 		views: {
 			'menuContent': {
 				templateUrl: '/static/templates/note.html',
 				controller: 'NoteCtrl'
 			}
 		}
+	})
+
+	.state('app.noteDetail',{
+		url:'/note-detail/:id',
+		views:{
+			'menuContent': {
+				templateUrl: '/static/templates/note-detail.html',
+				controller:'NoteDetailCtrl'
+			}
+		}
 	});
 
 
 
-	$urlRouterProvider.otherwise('/app/note/all');
+	$urlRouterProvider.otherwise('/app/note/unfinished');
 });

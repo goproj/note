@@ -22,11 +22,11 @@ angular.module('starter.services.Note', [])
 		deleteNote: function(id) {
 			return $http.delete('/note/'+id);
 		},
-		editNote: function(note) {
+		editNote: function(id,content) {
 			return $http.put('/note/'+id,{
 				content:content
 			}).then(function(result){
-				alert(JSON.stringify(result));
+				return result.data;
 			});
 		},
 		mark:function(id,done){

@@ -14,24 +14,17 @@
                     <a class="button icon-left ion-plus-round button-clear button-dark">添加</a>
                 </ion-item>
                 <ion-item nav-clear menu-close>
-                    <a class="button icon-left ion-star button-clear button-dark" href="#/app/note/all">全部</a>
+                    <a class="button icon-left ion-document-text button-clear button-dark" href="#/app/note/unfinished">待办</a>
                 </ion-item>
                 <ion-item nav-clear menu-close>
-                    <a class="button icon-left ion-checkmark button-clear button-dark" href="#/app/note/finished">已完成</a>
-                </ion-item>
-                <ion-item nav-clear menu-close>
-                    <a class="button icon-left ion-document-text button-clear button-dark" href="#/app/note/unfinished">待完成</a>
-                </ion-item>
-                
-                
+                    <a class="button icon-left ion-checkmark button-clear button-dark" href="#/app/note/finished">历史</a>
+                </ion-item>   
             </ion-list>
             <div class="padding-horizontal">
                 <button class="button button-block button-assertive" ng-click="logout()">
                     退出
                 </button>
             </div>
-            
-            
         </ion-content>
     </ion-side-menu>
 </ion-side-menus>
